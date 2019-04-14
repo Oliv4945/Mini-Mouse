@@ -26,7 +26,8 @@ Maintainer        : Fabien Holin (SEMTECH)
 #define LOW_POWER_MODE 0     // Set to 1 to activate sleep mode , set to 0 to replace by wait functions (easier in debug mode) 
 #define DEBUG_TRACE_ENABLE 0  // Set to 1 to activate DebugTrace 
 
-#define LOW_SPEED_CLK  LSE    //
+#define ARDUINO_BOARD
+
 
 #ifdef MURATA_BOARD
     #define UART_NUM                  USART2
@@ -51,6 +52,15 @@ Maintainer        : Fabien Holin (SEMTECH)
     #define USERFLASHADRESS 0x8080000U   // start flash adress to store lorawan context
 
 /*SX1276 BOARD specific */
+#elif defined(ARDUINO_BOARD)
+    #define LORA_CS             10
+    #define LORA_SPI_MOSI       11
+    #define LORA_SPI_MISO       12
+    #define LORA_SPI_SCLK       13
+    #define TX_RX_IT             3      // Interrupt TX/RX Done
+    #define RX_TIMEOUT_IT        3      // Interrupt RX TIME OUT
+    #define LORA_RESET        NULL
+    #define USERFLASHADRESS      0
 #else 
     #ifdef SX126x_BOARD
         #define UART_NUM           USART2

@@ -28,9 +28,7 @@ Maintainer        : Fabien Holin (SEMTECH)
 #include "SX126x.h"
 #include "ApiMcu.h"
 #include "utilities.h"
-#include "main.h"
 #include "UserDefine.h"
-#include "ApiMcu.h"
 
 
 #define FileId 4
@@ -47,6 +45,9 @@ struct sBackUpFlash BackUpFlash;
 #endif
 #ifdef BOARD_L4
     McuXX<McuSTM32L4> mcu ( LORA_SPI_MOSI, LORA_SPI_MISO, LORA_SPI_SCLK ) ;
+#endif
+#ifdef ARDUINO_BOARD
+    McuXX<McuArduino> mcu ( LORA_SPI_MOSI, LORA_SPI_MISO, LORA_SPI_SCLK ) ;
 #endif
 /*!
  * \brief   Parameters of the LoraWanKeys structure. 
@@ -171,8 +172,7 @@ int main( ) {
         mcu.WatchDogRelease ( );
         if ( LpState == LWPSTATE_ERROR ) {
             InsertTrace ( __COUNTER__, FileId );
-            // user application have to save all the need
-            NVIC_SystemReset();
+            while(1); // Trigger watchdog
         }
         if ( AvailableRxPacket != NO_LORA_RXPACKET_AVAILABLE ) { 
             InsertTrace ( __COUNTER__, FileId );
