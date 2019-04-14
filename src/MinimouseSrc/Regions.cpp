@@ -467,7 +467,7 @@ template < class R >void LoraRegionsEU<R>::RegionLoadFromFlash ( void ){
         BackUpFlash.NbOfReset = 0;
         RegionSaveInFlash ( );
         DEBUG_MSG("WRONG CRC \n");
-        NVIC_SystemReset();
+        while(1);
     }
 }
 

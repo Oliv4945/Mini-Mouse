@@ -50,7 +50,8 @@ Maintainer        : Fabien Holin (SEMTECH)
 
 uint32_t FLASH_If_Erase(uint32_t bank_active)
 {
-    // TODO: Arduino
+    // TODO: 
+    return 0;
 }
 
 /**
@@ -61,7 +62,8 @@ uint32_t FLASH_If_Erase(uint32_t bank_active)
   */
 uint32_t FLASH_If_Check(uint32_t start)
 {
-// TODO: Arduino
+    // TODO: Arduino
+    return 0;
 }
 
 /**
@@ -77,6 +79,7 @@ uint32_t FLASH_If_Check(uint32_t start)
 uint32_t FLASH_If_Write(uint32_t destination, uint32_t *p_source, uint32_t length)
 {
     // TODO: Arduino
+    return 0;
 }
 
 /**
@@ -85,6 +88,7 @@ uint32_t FLASH_If_Write(uint32_t destination, uint32_t *p_source, uint32_t lengt
   */
 uint32_t FLASH_If_WriteProtectionClear( void ) {
     // TODO: Arduino
+    return 0;
 }
 /**
   * @brief  Modify the BFB2 status of user flash area.
@@ -108,11 +112,13 @@ void FlashPageErase( uint32_t page, uint32_t banks )
 uint8_t EepromMcuWriteBuffer( uint32_t addr, uint8_t *buffer, uint16_t size )
 {   
     // TODO: Arduino
+    return 0;
 }
 
 uint8_t EepromMcuReadBuffer( uint32_t addr, uint8_t *buffer, uint16_t size )
 {
     // TODO: Arduino
+    return 0;
 }
 
 void EepromMcuSetDeviceAddr( uint8_t addr )
@@ -192,21 +198,21 @@ void McuArduino::InitMcu( void ) {
 /*******************************************/
 void McuArduino::InitGpio ( ) {
     pinMode( LORA_CS, OUTPUT );
-    if ( LORA_RESET != NULL ) {
+    if ( LORA_RESET != 255 ) {
         pinMode( LORA_RESET, OUTPUT );
     }
 }
 
 
 void McuArduino::SetValueDigitalOutPin ( PinName Pin, int Value ) {
-    if ( Pin != NULL ) {
+    if ( Pin != 255 ) {
         digitalWrite( Pin, Value );
     }
 }
 
 
 int McuArduino::GetValueDigitalInPin ( PinName Pin ) {
-    if ( Pin != NULL ) {
+    if ( Pin != 255 ) {
         return digitalRead( Pin );
     } else {
         return 0;
@@ -271,7 +277,7 @@ int McuArduino::RestoreContext(uint8_t *buffer, uint32_t addr, uint32_t size){
     EepromMcuReadBuffer( addr, buffer, sizet );
     return ( 0 );
 }
-static uint8_t copyPage [2048] ;
+// static uint8_t copyPage [2048] ;
 int McuArduino::WriteFlashWithoutErase(uint8_t *buffer, uint32_t addr, uint32_t size){
     // TODO: Arduino
     return ( 0 ); 
